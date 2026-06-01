@@ -1,0 +1,615 @@
+{
+  "entity": {
+    "climate": {
+      "tasmota_ir_ready": {
+        "state_attributes": {
+          "fan_mode": {
+            "name": "Fan speed"
+          },
+          "swing_mode": {
+            "state": {
+              "vertical": "Auto",
+              "horizontal": "Auto",
+              "both": "Auto"
+            }
+          }
+        }
+      }
+    }
+  },
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up Tasmota IR Ready",
+        "description": "Choose the kind of IR device you want to add.",
+        "data": {
+          "device_type": "Device Type"
+        }
+      },
+      "climate": {
+        "title": "Set up IR Climate",
+        "description": "Enter the minimum details to connect to your AC. All other settings can be configured afterwards via the **Configure** button.",
+        "data": {
+          "name": "Name",
+          "vendor": "AC Vendor / Protocol",
+          "command_topic": "MQTT Command Topic",
+          "state_topic": "MQTT State Topic"
+        },
+        "data_description": {
+          "vendor": "The IRHVAC vendor string, e.g. ELECTRA_AC, MITSUBISHI_AC, SAMSUNG_AC …",
+          "command_topic": "Topic to publish IR commands to, e.g. cmnd/tasmota_ir/IRHVAC",
+          "state_topic": "Topic to subscribe for AC state updates, e.g. tele/tasmota_ir/RESULT"
+        }
+      },
+      "media_player": {
+        "title": "Set up IR Media Player",
+        "description": "Enter the Tasmota IRSend topic, IR protocol, bit count, and the hex data for each remote button.",
+        "data": {
+          "name": "Name",
+          "command_topic": "MQTT IRSend Command Topic",
+          "availability_topic": "Availability Topic (optional)",
+          "learn_topic": "IR Receive Topic (for Learning, optional)",
+          "media_protocol": "IR Protocol",
+          "media_bits": "Bits",
+          "media_power_data": "Power Toggle Hex Data (optional)",
+          "media_power_on_data": "Power On Hex Data (optional)",
+          "media_power_off_data": "Power Off Hex Data (optional)",
+          "media_volume_up_data": "Volume Up Hex Data (optional)",
+          "media_volume_down_data": "Volume Down Hex Data (optional)",
+          "media_mute_data": "Mute Hex Data (optional)",
+          "media_play_pause_data": "Play/Pause Hex Data (optional)",
+          "media_next_data": "Next Hex Data (optional)",
+          "media_previous_data": "Previous Hex Data (optional)",
+          "media_source_1_name": "Source 1 Name (optional)",
+          "media_source_1_data": "Source 1 Hex Data (optional)",
+          "media_source_2_name": "Source 2 Name (optional)",
+          "media_source_2_data": "Source 2 Hex Data (optional)",
+          "media_source_3_name": "Source 3 Name (optional)",
+          "media_source_3_data": "Source 3 Hex Data (optional)"
+        },
+        "data_description": {
+          "command_topic": "Topic to publish IRSend commands to, e.g. cmnd/tasmota_ir/IRSend",
+          "media_protocol": "The protocol reported by Tasmota when decoding the remote, e.g. NEC, SONY, SAMSUNG.",
+          "media_bits": "The bit length reported by Tasmota for this remote code.",
+          "media_power_data": "Only the hex Data value, e.g. 0x20DF10EF. The integration builds the full IRSend JSON payload.",
+          "media_power_on_data": "Only the hex Data value for discrete power on.",
+          "media_power_off_data": "Only the hex Data value for discrete power off."
+        }
+      },
+      "remote": {
+        "title": "Set up IR Remote",
+        "description": "Enter the Tasmota IRSend topic, IR protocol, bit count, and initial remote button hex data.",
+        "data": {
+          "name": "Name",
+          "command_topic": "MQTT IRSend Command Topic",
+          "availability_topic": "Availability Topic (optional)",
+          "learn_topic": "IR Receive Topic (for Learning, optional)",
+          "media_protocol": "IR Protocol",
+          "media_bits": "Bits",
+          "media_power_data": "Power Toggle Hex Data (optional)",
+          "media_power_on_data": "Power On Hex Data (optional)",
+          "media_power_off_data": "Power Off Hex Data (optional)",
+          "media_volume_up_data": "Volume Up Hex Data (optional)",
+          "media_volume_down_data": "Volume Down Hex Data (optional)",
+          "media_mute_data": "Mute Hex Data (optional)",
+          "remote_up_data": "Up Hex Data (optional)",
+          "remote_down_data": "Down Hex Data (optional)",
+          "remote_left_data": "Left Hex Data (optional)",
+          "remote_right_data": "Right Hex Data (optional)",
+          "remote_ok_data": "OK Hex Data (optional)"
+        },
+        "data_description": {
+          "command_topic": "Topic to publish IRSend commands to, e.g. cmnd/tasmota_ir/IRSend",
+          "media_protocol": "The protocol reported by Tasmota when decoding the remote, e.g. NEC, SONY, SAMSUNG.",
+          "media_bits": "The bit length reported by Tasmota for this remote code."
+        }
+      },
+      "fan": {
+        "title": "Set up IR Fan",
+        "description": "Enter the Tasmota IRSend topic, IR protocol, and bit count. Speed presets and oscillation can be configured afterwards via the **Configure** button.",
+        "data": {
+          "name": "Name",
+          "command_topic": "MQTT IRSend Command Topic",
+          "availability_topic": "Availability Topic (optional)",
+          "learn_topic": "IR Receive Topic (for Learning, optional)",
+          "media_protocol": "IR Protocol",
+          "media_bits": "Bits"
+        },
+        "data_description": {
+          "command_topic": "Topic to publish IRSend commands to, e.g. cmnd/tasmota_ir/IRSend",
+          "media_protocol": "The protocol reported by Tasmota when decoding the remote, e.g. NEC, SONY, SAMSUNG.",
+          "media_bits": "The bit length reported by Tasmota for this remote code."
+        }
+      },
+      "humidifier": {
+        "title": "Set up IR Humidifier",
+        "description": "Enter the Tasmota IRSend topic, IR protocol, and bit count. Operating modes can be configured afterwards via the **Configure** button.",
+        "data": {
+          "name": "Name",
+          "command_topic": "MQTT IRSend Command Topic",
+          "availability_topic": "Availability Topic (optional)",
+          "learn_topic": "IR Receive Topic (for Learning, optional)",
+          "media_protocol": "IR Protocol",
+          "media_bits": "Bits"
+        },
+        "data_description": {
+          "command_topic": "Topic to publish IRSend commands to, e.g. cmnd/tasmota_ir/IRSend",
+          "media_protocol": "The protocol reported by Tasmota when decoding the remote, e.g. NEC, SONY, SAMSUNG.",
+          "media_bits": "The bit length reported by Tasmota for this remote code."
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "This device (command topic) is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Connection & Sensors",
+        "data": {
+          "name": "Name",
+          "vendor": "AC Vendor / Protocol",
+          "command_topic": "MQTT Command Topic",
+          "state_topic": "MQTT State Topic",
+          "state_topic_2": "MQTT State Topic 2 (optional)",
+          "availability_topic": "Availability Topic (optional)",
+          "mqtt_delay": "MQTT Delay (seconds)",
+          "temperature_sensor": "Temperature Sensor (optional)",
+          "humidity_sensor": "Humidity Sensor (optional)",
+          "power_sensor": "Power Sensor (optional)"
+        },
+        "data_description": {
+          "state_topic_2": "Subscribe to a second topic, e.g. stat/tasmota_ir/RESULT alongside tele/",
+          "availability_topic": "Leave blank to auto-derive from the command topic, e.g. tele/tasmota_ir/LWT",
+          "mqtt_delay": "Delay before publishing — useful when grouping multiple devices",
+          "power_sensor": "Binary/switch sensor that reflects the AC's physical power state"
+        }
+      },
+      "capabilities": {
+        "title": "AC Capabilities",
+        "data": {
+          "supported_modes": "Supported HVAC Modes",
+          "supported_fan_speeds": "Supported Fan Speeds",
+          "supported_swing_list": "Supported Swing Positions",
+          "initial_operation_mode": "Initial Operation Mode",
+          "min_temp": "Minimum Temperature",
+          "max_temp": "Maximum Temperature",
+          "target_temp": "Default Target Temperature",
+          "precision": "Temperature Precision",
+          "temp_step": "Temperature Step",
+          "celsius_mode": "Temperature Unit",
+          "hvac_model": "HVAC Model Number",
+          "away_temp": "Away Temperature (0 = disabled)"
+        },
+        "data_description": {
+          "supported_modes": "Select only the modes your AC remote supports",
+          "supported_fan_speeds": "Select only the fan speeds your AC remote supports",
+          "supported_swing_list": "Select swing options available on your AC. Use fixed positions (Highest/High/…) instead of auto sweep if your AC supports vane positioning",
+          "hvac_model": "Leave at -1 for auto-detect, or enter the model number shown in Tasmota IRHVAC output"
+        },
+        "sections": {
+          "hvac_modes": {
+            "name": "Supported HVAC Modes",
+            "description": "Select only the modes your AC remote supports",
+            "data": {
+              "supported_modes": "Modes"
+            }
+          },
+          "fan_speeds": {
+            "name": "Supported Fan Speeds",
+            "description": "Select only the fan speeds your AC remote supports",
+            "data": {
+              "supported_fan_speeds": "Fan speeds"
+            }
+          },
+          "swing_positions": {
+            "name": "Supported Swing Positions",
+            "description": "Select swing options available on your AC. Use fixed positions (Highest/High/…) instead of auto sweep if your AC supports vane positioning",
+            "data": {
+              "supported_swing_list": "Swing positions"
+            }
+          }
+        }
+      },
+      "behavior": {
+        "title": "Behavior",
+        "data": {
+          "toggle_list": "Feature Switches",
+          "default_sleep_mode": "Default Sleep (-1 = off)",
+          "default_swingv": "Default Vertical Vane Position",
+          "default_swingh": "Default Horizontal Vane Position",
+          "keep_mode_when_off": "Keep Mode When Off",
+          "ignore_off_temp": "Ignore Temperature When Off",
+          "special_mode": "Special Mode (power sensor)"
+        },
+        "data_description": {
+          "toggle_list": "Each checked item creates a dedicated On/Off switch entity in Home Assistant",
+          "default_sleep_mode": "Sleep timer value sent with every IR command. Use -1 to leave it off",
+          "default_swingv": "Fixed vertical vane position sent when no swing mode is active",
+          "default_swingh": "Fixed horizontal vane position sent when no swing mode is active",
+          "keep_mode_when_off": "When off, still include the last active mode in the MQTT payload so the AC remembers it",
+          "ignore_off_temp": "Do not update the target temperature from MQTT payloads received while the AC is off",
+          "special_mode": "HVAC mode to report when the power sensor turns on unexpectedly (e.g. auto-clean)"
+        }
+      },
+      "media_player_options": {
+        "title": "Media Player Commands",
+        "data": {
+          "learn_command": "Learn a Command (IR Learning)",
+          "name": "Name",
+          "command_topic": "MQTT IRSend Command Topic",
+          "availability_topic": "Availability Topic (optional)",
+          "media_protocol": "IR Protocol",
+          "media_bits": "Bits",
+          "media_power_data": "Power Toggle Hex Data (optional)",
+          "media_power_on_data": "Power On Hex Data (optional)",
+          "media_power_off_data": "Power Off Hex Data (optional)",
+          "media_volume_up_data": "Volume Up Hex Data (optional)",
+          "media_volume_down_data": "Volume Down Hex Data (optional)",
+          "media_mute_data": "Mute Hex Data (optional)",
+          "media_play_data": "Play Hex Data (optional)",
+          "media_pause_data": "Pause Hex Data (optional)",
+          "media_play_pause_data": "Play/Pause Hex Data (optional)",
+          "media_stop_data": "Stop Hex Data (optional)",
+          "media_next_data": "Next Hex Data (optional)",
+          "media_previous_data": "Previous Hex Data (optional)",
+          "media_fast_forward_data": "Fast Forward Hex Data (optional)",
+          "media_rewind_data": "Rewind Hex Data (optional)",
+          "media_channel_up_data": "Channel Up Hex Data (optional)",
+          "media_channel_down_data": "Channel Down Hex Data (optional)",
+          "media_source_mode": "Source Selection Mode",
+          "media_source_cycle_data": "Source Cycle Button Hex Data",
+          "media_source_cycle_delay": "Delay Between Cycle Presses (seconds)",
+          "media_source_1_name": "Source 1 Name",
+          "media_source_1_data": "Source 1 Hex Data",
+          "media_source_2_name": "Source 2 Name",
+          "media_source_2_data": "Source 2 Hex Data",
+          "media_source_3_name": "Source 3 Name",
+          "media_source_3_data": "Source 3 Hex Data",
+          "media_source_4_name": "Source 4 Name",
+          "media_source_4_data": "Source 4 Hex Data",
+          "media_source_5_name": "Source 5 Name",
+          "media_source_5_data": "Source 5 Hex Data",
+          "media_source_6_name": "Source 6 Name",
+          "media_source_6_data": "Source 6 Hex Data"
+        },
+        "data_description": {
+          "learn_command": "Select a command and click Submit to enter IR learning mode. The integration will subscribe to your Tasmota RESULT topic and fill the hex value when a button is pressed (30 s timeout).",
+          "command_topic": "Topic to publish IRSend commands to, e.g. cmnd/tasmota_ir/IRSend",
+          "availability_topic": "Leave blank to auto-derive from the command topic, e.g. tele/tasmota_ir/LWT",
+          "media_protocol": "The protocol reported by Tasmota when decoding the remote, e.g. NEC, SONY, SAMSUNG.",
+          "media_bits": "The bit length reported by Tasmota for this remote code.",
+          "media_power_data": "Only the hex Data value, e.g. 0x20DF10EF. The integration builds the full IRSend JSON payload."
+        },
+        "sections": {
+          "media_connection": {
+            "name": "Connection & Protocol",
+            "data": {
+              "name": "Name",
+              "command_topic": "MQTT IRSend Command Topic",
+              "availability_topic": "Availability Topic (optional)",
+              "learn_topic": "IR Receive Topic (for Learning)",
+              "media_protocol": "IR Protocol",
+              "media_bits": "Bits"
+            }
+          },
+          "media_commands": {
+            "name": "Remote Button Hex Data",
+            "data": {
+              "media_power_data": "Power Toggle",
+              "media_power_on_data": "Power On",
+              "media_power_off_data": "Power Off",
+              "media_volume_up_data": "Volume Up",
+              "media_volume_down_data": "Volume Down",
+              "media_mute_data": "Mute",
+              "media_play_data": "Play",
+              "media_pause_data": "Pause",
+              "media_play_pause_data": "Play/Pause",
+              "media_stop_data": "Stop",
+              "media_next_data": "Next",
+              "media_previous_data": "Previous",
+              "media_fast_forward_data": "Fast Forward",
+              "media_rewind_data": "Rewind",
+              "media_channel_up_data": "Channel Up",
+              "media_channel_down_data": "Channel Down"
+            }
+          },
+          "media_sources": {
+            "name": "Input Sources",
+            "description": "**Direct mode:** fill in both the name and hex Data for each source.\n**Cycle mode:** fill in only the source names (in cycle order) and the Cycle Button hex data — pressing the cycle button advances to the next source.",
+            "data": {
+              "media_source_mode": "Source Selection Mode",
+              "media_source_cycle_data": "Source Cycle Button Hex Data",
+              "media_source_cycle_delay": "Delay Between Cycle Presses (seconds)",
+              "media_source_1_name": "Source 1 name",
+              "media_source_1_data": "Source 1 data (direct mode)",
+              "media_source_2_name": "Source 2 name",
+              "media_source_2_data": "Source 2 data (direct mode)",
+              "media_source_3_name": "Source 3 name",
+              "media_source_3_data": "Source 3 data (direct mode)",
+              "media_source_4_name": "Source 4 name",
+              "media_source_4_data": "Source 4 data (direct mode)",
+              "media_source_5_name": "Source 5 name",
+              "media_source_5_data": "Source 5 data (direct mode)",
+              "media_source_6_name": "Source 6 name",
+              "media_source_6_data": "Source 6 data (direct mode)"
+            }
+          }
+        }
+      },
+      "remote_options": {
+        "title": "Remote Commands",
+        "data": {
+          "learn_command": "Learn a Command (IR Learning)",
+          "name": "Name",
+          "command_topic": "MQTT IRSend Command Topic",
+          "availability_topic": "Availability Topic (optional)",
+          "media_protocol": "IR Protocol",
+          "media_bits": "Bits",
+          "media_power_data": "Power Toggle Hex Data (optional)",
+          "media_power_on_data": "Power On Hex Data (optional)",
+          "media_power_off_data": "Power Off Hex Data (optional)",
+          "media_volume_up_data": "Volume Up Hex Data (optional)",
+          "media_volume_down_data": "Volume Down Hex Data (optional)",
+          "media_mute_data": "Mute Hex Data (optional)",
+          "remote_digit_0_data": "Digit 0 Hex Data",
+          "remote_digit_1_data": "Digit 1 Hex Data",
+          "remote_digit_2_data": "Digit 2 Hex Data",
+          "remote_digit_3_data": "Digit 3 Hex Data",
+          "remote_digit_4_data": "Digit 4 Hex Data",
+          "remote_digit_5_data": "Digit 5 Hex Data",
+          "remote_digit_6_data": "Digit 6 Hex Data",
+          "remote_digit_7_data": "Digit 7 Hex Data",
+          "remote_digit_8_data": "Digit 8 Hex Data",
+          "remote_digit_9_data": "Digit 9 Hex Data",
+          "remote_up_data": "Up Hex Data",
+          "remote_down_data": "Down Hex Data",
+          "remote_left_data": "Left Hex Data",
+          "remote_right_data": "Right Hex Data",
+          "remote_ok_data": "OK Hex Data",
+          "remote_back_data": "Back Hex Data",
+          "remote_home_data": "Home Hex Data",
+          "remote_menu_data": "Menu Hex Data",
+          "remote_settings_data": "Settings Hex Data",
+          "remote_info_data": "Info Hex Data",
+          "remote_exit_data": "Exit Hex Data",
+          "remote_channel_up_data": "Channel Up Hex Data",
+          "remote_channel_down_data": "Channel Down Hex Data",
+          "remote_red_data": "Red Hex Data",
+          "remote_green_data": "Green Hex Data",
+          "remote_yellow_data": "Yellow Hex Data",
+          "remote_blue_data": "Blue Hex Data"
+        },
+        "data_description": {
+          "learn_command": "Select a command and click Submit to enter IR learning mode. The integration will subscribe to your Tasmota RESULT topic and fill the hex value when a button is pressed (30 s timeout).",
+          "command_topic": "Topic to publish IRSend commands to, e.g. cmnd/tasmota_ir/IRSend",
+          "availability_topic": "Leave blank to auto-derive from the command topic, e.g. tele/tasmota_ir/LWT",
+          "media_protocol": "The protocol reported by Tasmota when decoding the remote, e.g. NEC, SONY, SAMSUNG.",
+          "media_bits": "The bit length reported by Tasmota for this remote code.",
+          "media_power_data": "Only the hex Data value, e.g. 0x20DF10EF. The integration builds the full IRSend JSON payload."
+        },
+        "sections": {
+          "media_connection": {
+            "name": "Connection & Protocol",
+            "data": {
+              "name": "Name",
+              "command_topic": "MQTT IRSend Command Topic",
+              "availability_topic": "Availability Topic (optional)",
+              "learn_topic": "IR Receive Topic (for Learning)",
+              "media_protocol": "IR Protocol",
+              "media_bits": "Bits"
+            }
+          },
+          "media_commands": {
+            "name": "Power & Volume",
+            "data": {
+              "media_power_data": "Power Toggle",
+              "media_power_on_data": "Power On",
+              "media_power_off_data": "Power Off",
+              "media_volume_up_data": "Volume Up",
+              "media_volume_down_data": "Volume Down",
+              "media_mute_data": "Mute"
+            }
+          },
+          "remote_keypad": {
+            "name": "Remote Keypad",
+            "description": "These commands are sent through remote.send_command as digit_0 through digit_9. Aliases 0 through 9 also work.",
+            "data": {
+              "remote_digit_0_data": "Digit 0",
+              "remote_digit_1_data": "Digit 1",
+              "remote_digit_2_data": "Digit 2",
+              "remote_digit_3_data": "Digit 3",
+              "remote_digit_4_data": "Digit 4",
+              "remote_digit_5_data": "Digit 5",
+              "remote_digit_6_data": "Digit 6",
+              "remote_digit_7_data": "Digit 7",
+              "remote_digit_8_data": "Digit 8",
+              "remote_digit_9_data": "Digit 9"
+            }
+          },
+          "remote_navigation": {
+            "name": "Remote Navigation",
+            "data": {
+              "remote_up_data": "Up",
+              "remote_down_data": "Down",
+              "remote_left_data": "Left",
+              "remote_right_data": "Right",
+              "remote_ok_data": "OK",
+              "remote_back_data": "Back",
+              "remote_home_data": "Home",
+              "remote_menu_data": "Menu",
+              "remote_settings_data": "Settings",
+              "remote_info_data": "Info",
+              "remote_exit_data": "Exit"
+            }
+          },
+          "remote_extra": {
+            "name": "Remote Extra Buttons",
+            "data": {
+              "remote_channel_up_data": "Channel Up",
+              "remote_channel_down_data": "Channel Down",
+              "remote_red_data": "Red",
+              "remote_green_data": "Green",
+              "remote_yellow_data": "Yellow",
+              "remote_blue_data": "Blue"
+            }
+          },
+          "remote_sources": {
+            "name": "Input Sources",
+            "description": "**Direct mode:** call `remote.send_command` with the source name — each name maps to its own IR code.\n**Cycle mode:** call `remote.send_command` with a source name — the integration presses the cycle button the required number of times.",
+            "data": {
+              "media_source_mode": "Source Selection Mode",
+              "media_source_cycle_data": "Source Cycle Button Hex Data",
+              "media_source_cycle_delay": "Delay Between Cycle Presses (seconds)",
+              "media_source_1_name": "Source 1 name",
+              "media_source_1_data": "Source 1 data (direct mode)",
+              "media_source_2_name": "Source 2 name",
+              "media_source_2_data": "Source 2 data (direct mode)",
+              "media_source_3_name": "Source 3 name",
+              "media_source_3_data": "Source 3 data (direct mode)",
+              "media_source_4_name": "Source 4 name",
+              "media_source_4_data": "Source 4 data (direct mode)",
+              "media_source_5_name": "Source 5 name",
+              "media_source_5_data": "Source 5 data (direct mode)",
+              "media_source_6_name": "Source 6 name",
+              "media_source_6_data": "Source 6 data (direct mode)"
+            }
+          }
+        }
+      },
+      "fan_options": {
+        "title": "Fan Commands",
+        "data": {
+          "learn_command": "Learn a Command (IR Learning)"
+        },
+        "sections": {
+          "fan_connection": {
+            "name": "Connection & Protocol",
+            "data": {
+              "name": "Name",
+              "command_topic": "MQTT IRSend Command Topic",
+              "availability_topic": "Availability Topic (optional)",
+              "learn_topic": "IR Receive Topic (for Learning)",
+              "media_protocol": "IR Protocol",
+              "media_bits": "Bits",
+              "mqtt_delay": "MQTT Delay (seconds)",
+              "fan_power_sensor": "Power Sensor (optional)"
+            },
+            "data_description": {
+              "mqtt_delay": "Delay before publishing — useful when grouping multiple IR devices to avoid simultaneous commands.",
+              "fan_power_sensor": "Select a binary_sensor that reflects the fan's physical power state. When it changes, the HA entity state is updated immediately — overriding the optimistic IR command result."
+            }
+          },
+          "fan_power": {
+            "name": "Power Commands",
+            "data": {
+              "fan_power_data": "Power Toggle",
+              "fan_power_on_data": "Power On",
+              "fan_power_off_data": "Power Off"
+            }
+          },
+          "fan_speeds": {
+            "name": "Speed Presets",
+            "description": "Define up to 6 named speed presets. Each name will appear as a preset mode in Home Assistant.",
+            "data": {
+              "fan_speed_1_name": "Speed 1 Name",
+              "fan_speed_1_data": "Speed 1 IR Code",
+              "fan_speed_2_name": "Speed 2 Name",
+              "fan_speed_2_data": "Speed 2 IR Code",
+              "fan_speed_3_name": "Speed 3 Name",
+              "fan_speed_3_data": "Speed 3 IR Code",
+              "fan_speed_4_name": "Speed 4 Name",
+              "fan_speed_4_data": "Speed 4 IR Code",
+              "fan_speed_5_name": "Speed 5 Name",
+              "fan_speed_5_data": "Speed 5 IR Code",
+              "fan_speed_6_name": "Speed 6 Name",
+              "fan_speed_6_data": "Speed 6 IR Code"
+            }
+          },
+          "fan_oscillation": {
+            "name": "Oscillation & Direction",
+            "data": {
+              "fan_oscillate_data": "Oscillate Toggle",
+              "fan_oscillate_on_data": "Oscillate On",
+              "fan_oscillate_off_data": "Oscillate Off",
+              "fan_direction_forward_data": "Direction Forward",
+              "fan_direction_reverse_data": "Direction Reverse"
+            }
+          }
+        }
+      },
+      "humidifier_options": {
+        "title": "Humidifier Commands",
+        "data": {
+          "learn_command": "Learn a Command (IR Learning)"
+        },
+        "sections": {
+          "humidifier_connection": {
+            "name": "Connection & Protocol",
+            "data": {
+              "name": "Name",
+              "command_topic": "MQTT IRSend Command Topic",
+              "availability_topic": "Availability Topic (optional)",
+              "learn_topic": "IR Receive Topic (for Learning)",
+              "media_protocol": "IR Protocol",
+              "media_bits": "Bits",
+              "mqtt_delay": "MQTT Delay (seconds)",
+              "humidifier_humidity_sensor": "Current Humidity Sensor (optional)",
+              "humidifier_power_sensor": "Power Sensor (optional)"
+            },
+            "data_description": {
+              "mqtt_delay": "Delay before publishing — useful when grouping multiple IR devices to avoid simultaneous commands.",
+              "humidifier_humidity_sensor": "Select any HA sensor that reports the current room humidity. Leave blank if you have no sensor.",
+              "humidifier_power_sensor": "Select a binary_sensor that reflects the humidifier's physical power state. When it changes, the HA entity state is updated immediately — overriding the optimistic IR command result."
+            }
+          },
+          "humidifier_power": {
+            "name": "Power Commands",
+            "data": {
+              "humidifier_power_data": "Power Toggle",
+              "humidifier_power_on_data": "Power On",
+              "humidifier_power_off_data": "Power Off"
+            }
+          },
+          "humidifier_modes": {
+            "name": "Operating Modes",
+            "description": "Define up to 6 named operating modes. Each name will appear as a mode in Home Assistant.",
+            "data": {
+              "humidifier_mode_1_name": "Mode 1 Name",
+              "humidifier_mode_1_data": "Mode 1 IR Code",
+              "humidifier_mode_2_name": "Mode 2 Name",
+              "humidifier_mode_2_data": "Mode 2 IR Code",
+              "humidifier_mode_3_name": "Mode 3 Name",
+              "humidifier_mode_3_data": "Mode 3 IR Code",
+              "humidifier_mode_4_name": "Mode 4 Name",
+              "humidifier_mode_4_data": "Mode 4 IR Code",
+              "humidifier_mode_5_name": "Mode 5 Name",
+              "humidifier_mode_5_data": "Mode 5 IR Code",
+              "humidifier_mode_6_name": "Mode 6 Name",
+              "humidifier_mode_6_data": "Mode 6 IR Code"
+            }
+          },
+          "humidifier_settings": {
+            "name": "Humidity Settings",
+            "description": "Target humidity is stored optimistically in HA — no IR code is sent when you change it. Current humidity is read live from the chosen sensor. The step is stored as a diagnostic attribute (HA's humidifier UI always increments by 1%).",
+            "data": {
+              "humidifier_min_humidity": "Min Target Humidity (%)",
+              "humidifier_max_humidity": "Max Target Humidity (%)",
+              "humidifier_humidity_step": "Humidity Step (%)"
+            },
+            "data_description": {
+              "humidifier_min_humidity": "Lower bound of the target humidity slider shown in the HA dashboard.",
+              "humidifier_max_humidity": "Upper bound of the target humidity slider shown in the HA dashboard.",
+              "humidifier_humidity_step": "Step used when incrementing/decrementing target humidity via automations or custom cards."
+            }
+          }
+        }
+      },
+      "learn_ir": {
+        "title": "Learning IR Command",
+        "description": "Point your remote at the Tasmota IR receiver and press the **{command_name}** button.\n\nWaiting up to 30 seconds…"
+      }
+    }
+  }
+}

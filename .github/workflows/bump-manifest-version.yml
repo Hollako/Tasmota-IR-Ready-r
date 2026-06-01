@@ -1,0 +1,57 @@
+name: Bump manifest version on tag
+
+# Triggers when you push a version tag (e.g. v1.0.3, v2.0.0)
+on:
+  push:
+    tags:
+      - 'v[0-9]*'
+
+permissions:
+  contents: write
+
+jobs:
+  bump-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      # Strip the leading "v" from the tag name (v1.0.3 -> 1.0.3)
+      - name: Extract version from tag
+        id: ver
+        run: echo "version=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
+
+      # Write the version into manifest.json
+      - name: Update manifest.json
+        run: |
+          jq --arg v "${{ steps.ver.outputs.version }}" '.version = $v' \
+            custom_components/tasmota_ir_ready/manifest.json \
+            > /tmp/manifest.json
+          mv /tmp/manifest.json \
+            custom_components/tasmota_ir_ready/manifest.json
+
+      # Commit and push only if the manifest actually changed
+      - name: Commit manifest bump
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add custom_components/tasmota_ir_ready/manifest.json
+          if git diff --staged --quiet; then
+            echo "Manifest already at ${{ steps.ver.outputs.version }} - nothing to do"
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            git commit -m "chore: bump manifest to ${{ steps.ver.outputs.version }}"
+            git push origin master
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      # Move the tag forward to include the manifest-bump commit
+      - name: Move tag to manifest-bump commit
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          git tag -f "${{ github.ref_name }}"
+          git push origin "${{ github.ref_name }}" --force

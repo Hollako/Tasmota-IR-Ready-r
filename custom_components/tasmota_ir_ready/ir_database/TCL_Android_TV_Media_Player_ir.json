@@ -1,0 +1,28 @@
+{
+  "title": "TCL Android TV",
+  "brand": "TCL",
+  "model": "Android TV",
+  "options": {
+    "device_type": "media_player",
+    "media_protocol": "NIKAI",
+    "media_bits": 24,
+    "media_source_cycle_delay": 0.5,
+    "media_source_mode": "direct",
+    "media_power_data": "0xD5F2A",
+    "media_power_on_data": "",
+    "media_power_off_data": "",
+    "media_volume_up_data": "0xD0F2F",
+    "media_volume_down_data": "0xD1F2E",
+    "media_mute_data": "0xC0F3F",
+    "media_next_data": "",
+    "media_previous_data": "",
+    "media_channel_up_data": "0xD2F2D",
+    "media_channel_down_data": "0xD3F2C",
+    "media_play_data": "",
+    "media_pause_data": "",
+    "media_play_pause_data": "",
+    "media_stop_data": "",
+    "media_fast_forward_data": "",
+    "media_rewind_data": ""
+  }
+}

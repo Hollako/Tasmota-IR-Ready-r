@@ -1,0 +1,21 @@
+{
+  "domain": "tasmota_ir_ready",
+  "name": "Tasmota IR Ready",
+  "after_dependencies": [
+    "http",
+    "lovelace"
+  ],
+  "codeowners": [
+    "@Hollako"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "mqtt",
+    "sensor"
+  ],
+  "documentation": "https://github.com/Hollako/Tasmota-IR-Ready",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/Hollako/Tasmota-IR-Ready/issues",
+  "requirements": [],
+  "version": "1.0.7"
+}

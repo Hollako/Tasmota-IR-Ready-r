@@ -1,0 +1,20 @@
+# === Python Environment & Caches ===
+.venv/
+__pycache__/
+*.py[cod]
+
+# === PlatformIO & Microcontroller Builds ===
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# === IDE Editor Folders ===
+.vscode/
+!.vscode/extensions.json
+.vscode/.browse.c_cpp.db*
+
+# === OS & System Junk Files ===
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp

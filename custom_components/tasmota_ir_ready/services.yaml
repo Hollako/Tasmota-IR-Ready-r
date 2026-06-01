@@ -1,0 +1,256 @@
+set_econo:
+  description: Sets Econo mode.
+  target:
+    entity:
+      integration: tasmota_ir_ready
+  fields:
+    econo:
+      description: Sets Econo mode
+      example: "on"
+      required: true
+      selector:
+        select:
+          options:
+            - "off"
+            - "on"
+    state_mode:
+      description: Sets StateMode in MQTT message. Default is "SendStore".
+      example: "StoreOnly"
+      required: false
+      selector:
+        select:
+          options:
+            - StoreOnly
+            - SendStore
+
+set_turbo:
+  description: Sets Turbo mode.
+  target:
+    entity:
+      integration: tasmota_ir_ready
+  fields:
+    turbo:
+      description: Sets Turbo mode
+      example: "on"
+      required: true
+      selector:
+        select:
+          options:
+            - "off"
+            - "on"
+    state_mode:
+      description: Sets StateMode in MQTT message. Default is "SendStore".
+      example: "StoreOnly"
+      required: false
+      selector:
+        select:
+          options:
+            - StoreOnly
+            - SendStore
+
+set_filters:
+  description: Sets Filters mode.
+  target:
+    entity:
+      integration: tasmota_ir_ready
+  fields:
+    filters:
+      description: Sets Filters mode
+      example: "on"
+      required: true
+      selector:
+        select:
+          options:
+            - "off"
+            - "on"
+    state_mode:
+      description: Sets StateMode in MQTT message. Default is "SendStore".
+      example: "StoreOnly"
+      required: false
+      selector:
+        select:
+          options:
+            - StoreOnly
+            - SendStore
+
+set_light:
+  target:
+    entity:
+      integration: tasmota_ir_ready
+  description: Sets Light mode.
+  fields:
+    light:
+      description: Sets Light mode
+      example: "on"
+      required: true
+      selector:
+        select:
+          options:
+            - "off"
+            - "on"
+    state_mode:
+      description: Sets StateMode in MQTT message. Default is "SendStore".
+      example: "StoreOnly"
+      required: false
+      selector:
+        select:
+          options:
+            - StoreOnly
+            - SendStore
+
+set_quiet:
+  target:
+    entity:
+      integration: tasmota_ir_ready
+  description: Sets Quiet mode.
+  fields:
+    quiet:
+      description: Sets Quiet mode
+      example: "on"
+      required: true
+      selector:
+        select:
+          options:
+            - "off"
+            - "on"
+    state_mode:
+      description: Sets StateMode in MQTT message. Default is "SendStore".
+      example: "StoreOnly"
+      required: false
+      selector:
+        select:
+          options:
+            - StoreOnly
+            - SendStore
+
+set_clean:
+  target:
+    entity:
+      integration: tasmota_ir_ready
+  description: Sets Clean mode.
+  fields:
+    clean:
+      description: Sets Clean mode
+      example: "on"
+      required: true
+      selector:
+        select:
+          options:
+            - "off"
+            - "on"
+    state_mode:
+      description: Sets StateMode in MQTT message. Default is "SendStore".
+      example: "StoreOnly"
+      required: false
+      selector:
+        select:
+          options:
+            - StoreOnly
+            - SendStore
+
+set_beep:
+  target:
+    entity:
+      integration: tasmota_ir_ready
+  description: Sets Beep mode.
+  fields:
+    beep:
+      description: Sets Beep mode
+      example: "on"
+      required: true
+      selector:
+        select:
+          options:
+            - "off"
+            - "on"
+    state_mode:
+      description: Sets StateMode in MQTT message. Default is "SendStore".
+      example: "StoreOnly"
+      required: false
+      selector:
+        select:
+          options:
+            - StoreOnly
+            - SendStore
+
+set_sleep:
+  description: Sets Sleep mode.
+  target:
+    entity:
+      integration: tasmota_ir_ready
+  fields:
+    sleep:
+      description: Sets Sleep mode
+      example: "0"
+      required: true
+    state_mode:
+      description: Sets StateMode in MQTT message. Default is "SendStore".
+      example: "StoreOnly"
+      required: false
+      selector:
+        select:
+          options:
+            - StoreOnly
+            - SendStore
+
+set_swingv:
+  description: Sets vane vertical position.
+  target:
+    entity:
+      integration: tasmota_ir_ready
+  fields:
+    swingv:
+      description: '"off", "auto", "highest", "high", "middle", "low" or "lowest", but only those supported by this model.'
+      example: '"middle"'
+      required: true
+      selector:
+        select:
+          options:
+            - "off"
+            - "auto"
+            - "highest"
+            - "high"
+            - "middle"
+            - "low"
+            - "lowest"
+    state_mode:
+      description: Sets StateMode in MQTT message. Default is "SendStore".
+      example: "StoreOnly"
+      required: false
+      selector:
+        select:
+          options:
+            - StoreOnly
+            - SendStore
+
+set_swingh:
+  name: Set swingh
+  description: Sets vane horizontal position.
+  target:
+    entity:
+      integration: tasmota_ir_ready
+  fields:
+    swingh:
+      description: '"off", "auto", "left max", "left", "middle", "right", "right max" or "wide", but only those supported by this model.'
+      example: '"middle"'
+      required: true
+      selector:
+        select:
+          options:
+            - "off"
+            - "auto"
+            - "left max"
+            - "left"
+            - "middle"
+            - "right"
+            - "right max"
+            - "wide"
+    state_mode:
+      description: Sets StateMode in MQTT message. Default is "SendStore".
+      example: "StoreOnly"
+      required: false
+      selector:
+        select:
+          options:
+            - StoreOnly
+            - SendStore

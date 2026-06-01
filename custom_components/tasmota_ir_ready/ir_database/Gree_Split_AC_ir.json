@@ -1,0 +1,49 @@
+{
+  "title": "Gree Split AC",
+  "brand": "GREE",
+  "model": "Split AC",
+  "options": {
+    "device_type": "climate",
+    "vendor": "GREE",
+    "supported_modes": [
+      "heat",
+      "cool",
+      "auto",
+      "dry",
+      "fan_only"
+    ],
+    "supported_fan_speeds": [
+      "min",
+      "medium",
+      "max",
+      "auto"
+    ],
+    "supported_swing_list": [
+      "vertical",
+      "highest",
+      "high",
+      "middle",
+      "low",
+      "lowest"
+    ],
+    "initial_operation_mode": "off",
+    "min_temp": 16,
+    "max_temp": 30,
+    "target_temp": 24,
+    "precision": 0.1,
+    "temp_step": 1,
+    "celsius": "on",
+    "model": "-1",
+    "sleep": "-1",
+    "away_temp": 0,
+    "default_swingv": "off",
+    "default_swingh": "off",
+    "keep_mode": false,
+    "ignore_off_temp": false,
+    "toggle_list": [
+      "Turbo",
+      "Light"
+    ],
+    "mqtt_delay": 0
+  }
+}
